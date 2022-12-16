@@ -1,0 +1,89 @@
+server:
+  port: 9999
+
+# Mybatis-plus 全局配置
+mybatis-plus:
+  configuration:
+    # 日志输出
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 逻辑删除
+      logic-delete-field: flag
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  # xml文件位置
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+# Spring配置
+spring:
+  # 多配置文件
+  profiles:
+    active: druid
+  # Redis配置
+  redis:
+    host: 47.106.122.140
+    port: 6379
+    database: 0
+    password: root
+    connect-timeout: 1800000
+    lettuce:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 0
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池的最大数据库连接数
+        max-active: 8
+        # #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+  # Jackson的LocalDateTime序列化格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  # 文件大小限制
+  servlet:
+    multipart:
+      # 单个文件大小
+      maxFileSize: 10MB
+      # 单个上传请求中所有文件总大小的限制
+      maxRequestSize: 10MB
+  # 邮箱配置
+  mail:
+    # 平台地址，这里用的是qq邮箱
+    host: smtp.qq.com
+    # 端口号
+    port: 587
+    # 协议 默认就是smtp (使用465要将protocol改为smtps)
+    protocol: smtp
+    #发送邮件的邮箱地址：改成自己的邮箱
+    username: 215628266@qq.com
+    #授权码
+    password: viqwfvbykesbbgcc
+    # 设置开启ssl (QQ邮箱需要开启SSL)
+    properties:
+      mail:
+        stmp:
+          ssl:
+            enable: true
+    from: 215628266@qq.com
+
+# token配置
+token:
+  # token 有效期(分钟)
+  expireTime: 30
+  # token自定义标识
+  header: Authorization
+
+# 积木报表
+minidao :
+  base-package: org.jeecg.modules.jmreport.desreport.dao*
+  db-type: mysql
+  
+# minio
+minio:
+  endpoint: http://47.106.122.140:19000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucketName: productphoto
+
+# 邮箱
